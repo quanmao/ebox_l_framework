@@ -1,0 +1,593 @@
+{
+  "name": "stm32f0x",
+  "type": "ARM",
+  "dependenceList": [],
+  "srcDirs": [
+    ".eide/deps"
+  ],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "::CMSIS",
+        "files": [],
+        "folders": []
+      },
+      {
+        "name": "CMSIS",
+        "files": [
+          {
+            "path": "../../FrameWork/stm32f0/ST/CMSIS/Device/ST/STM32F0xx/Source/Templates/system_stm32f0xx.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "driver",
+        "files": [
+          {
+            "path": "../../../my-lib/drive/ebox/AD9833/AD9833-example.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/BH1750.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/BH1750.h"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/BH1750-example.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/LiquidCrystal_I2C.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/LiquidCrystal-example.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/LTC1446.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/LTC1446-example.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/AD9833/AD9833.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/MAX31865/MAX31865.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/MAX31865/Max31865-example.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/AD9954/AD9954.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/AD9954/AD9954.h"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/AD9954/AD9954-example.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/CS5522/CS5522.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/ebox/CS5522/CS5522-example.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "ebox_core",
+        "files": [
+          {
+            "path": "../../FrameWork/common/ebox_print.cpp"
+          },
+          {
+            "path": "../../FrameWork/common/vector.h"
+          },
+          {
+            "path": "../../FrameWork/common/WString.cpp"
+          },
+          {
+            "path": "../../FrameWork/common/itoa.c"
+          },
+          {
+            "path": "../../FrameWork/common/LinkedList.h"
+          },
+          {
+            "path": "../../FrameWork/common/ebox_mem.c"
+          },
+          {
+            "path": "../../FrameWork/common/sort.cpp"
+          },
+          {
+            "path": "../../FrameWork/common/print.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "ebox_mcu",
+        "files": [
+          {
+            "path": "../../FrameWork/common/ebox_gpios.cpp"
+          },
+          {
+            "path": "../../FrameWork/common/ebox_softi2c.cpp"
+          },
+          {
+            "path": "../../FrameWork/common/ebox_softspi.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_adc.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_base.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_exti.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_gpio.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_i2c.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_iflash.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_in_capture.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_power.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_pwm.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_rtc.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_spi.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_timer_it.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_timer.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_uart.cpp"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/eBox/ebox_wdg.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "example",
+        "files": [
+          {
+            "path": "../../example/adc.cpp"
+          },
+          {
+            "path": "../../example/exit.cpp"
+          },
+          {
+            "path": "../../example/flash.cpp"
+          },
+          {
+            "path": "../../example/gpios.cpp"
+          },
+          {
+            "path": "../../example/I2C_search address.cpp"
+          },
+          {
+            "path": "../../example/inCapture_sample.cpp"
+          },
+          {
+            "path": "../../example/List_Class.cpp"
+          },
+          {
+            "path": "../../example/List_SimpleInteger.cpp"
+          },
+          {
+            "path": "../../example/List_Sort.cpp"
+          },
+          {
+            "path": "../../example/memDynamic.cpp"
+          },
+          {
+            "path": "../../example/power_rtc wakeup.cpp"
+          },
+          {
+            "path": "../../example/power_sleep.cpp"
+          },
+          {
+            "path": "../../example/printExample.cpp"
+          },
+          {
+            "path": "../../example/pwm.cpp"
+          },
+          {
+            "path": "../../example/rtc_calendar.cpp"
+          },
+          {
+            "path": "../../example/timer1.cpp"
+          },
+          {
+            "path": "../../example/uart.cpp"
+          },
+          {
+            "path": "../../example/vector_example.cpp"
+          },
+          {
+            "path": "../../example/wdg.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "libraries_LL",
+        "files": [
+          {
+            "path": "../../FrameWork/stm32f0/ST/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_utils.c"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/ST/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_rcc.c"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/ST/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_gpio.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "menu",
+        "files": [
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/baseMacros.h"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/items.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/items.h"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/itemsTemplates.hpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/macros.h"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/menu.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/menu.h"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/menuBase.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/menuBase.h"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/menuDefs.h"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/menuIo.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/menuIo.h"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/nav.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/nav.h"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/shadows.h"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/ArduinoMenu/src/menuIO/serialOut.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "menu1",
+        "files": [
+          {
+            "path": "../../../my-lib/drive/utility/LCDMenuLib2-2.2.7/src/LCDMenuLib2.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/LCDMenuLib2-2.2.7/src/LCDMenuLib2_menu.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/LCDMenuLib2-2.2.7/examples/00_beginners/LCDML_000_serialMonitor/LCDML_example_serialMonitor.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/LCDMenuLib2-2.2.7/examples/02_functionality/LCDML_020_filelist/LCDML_020_filelist.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "start_code",
+        "files": [
+          {
+            "path": "../../FrameWork/stm32f0/ST/CMSIS/Device/ST/STM32F0xx/Source/Templates/arm/startup_stm32f030x6.s"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/ST/CMSIS/Device/ST/STM32F0xx/Source/Templates/arm/startup_stm32f072xb.s"
+          },
+          {
+            "path": "../../FrameWork/stm32f0/ST/CMSIS/Device/ST/STM32F0xx/Source/Templates/arm/startup_stm32f030x8.s"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "user",
+        "files": [
+          {
+            "path": "../../User/stm32f030f4/ebox_config.h"
+          },
+          {
+            "path": "../../User/main.cpp"
+          },
+          {
+            "path": "../../User/stm32f030f4/bsp_ebox.cpp"
+          },
+          {
+            "path": "../../User/stm32f030f4/mcu_config.h"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "util",
+        "files": [
+          {
+            "path": "../../../my-lib/drive/utility/LINEAR/Linear.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/LINEAR/LinearExample.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/LINEAR/LinearPiecewise.cpp"
+          },
+          {
+            "path": "../../../my-lib/drive/utility/LINEAR/LinearPiecewiseExample.cpp"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "miscInfo": {
+    "uid": "d4032c7cf4e345b851b1e3988c7f6d19"
+  },
+  "targets": {
+    "Target 1": {
+      "excludeList": [
+        "<virtual_root>/start_code/startup_stm32f072xb.s",
+        "<virtual_root>/start_code/startup_stm32f030x8.s",
+        "<virtual_root>/ebox_core/ebox_print.cpp",
+        "<virtual_root>/example/uart.cpp",
+        "<virtual_root>/example/exit.cpp",
+        "<virtual_root>/example/gpios.cpp",
+        "<virtual_root>/example/adc.cpp",
+        "<virtual_root>/example/flash.cpp",
+        "<virtual_root>/example/timer1.cpp",
+        "<virtual_root>/example/pwm.cpp",
+        "<virtual_root>/example/inCapture_sample.cpp",
+        "<virtual_root>/example/rtc_calendar.cpp",
+        "<virtual_root>/example/I2C_search address.cpp",
+        "<virtual_root>/example/vector_example.cpp",
+        "<virtual_root>/example/List_Class.cpp",
+        "<virtual_root>/example/List_SimpleInteger.cpp",
+        "<virtual_root>/example/List_Sort.cpp",
+        "<virtual_root>/example/memDynamic.cpp",
+        "<virtual_root>/example/printExample.cpp",
+        "<virtual_root>/example/power_sleep.cpp",
+        "<virtual_root>/example/power_rtc wakeup.cpp",
+        "<virtual_root>/driver/AD9833-example.cpp",
+        "<virtual_root>/driver/BH1750-example.cpp",
+        "<virtual_root>/driver/LiquidCrystal-example.cpp",
+        "<virtual_root>/driver/LTC1446-example.cpp",
+        "<virtual_root>/driver/AD9833.cpp",
+        "<virtual_root>/driver/Max31865-example.cpp",
+        "<virtual_root>/driver/AD9954-example.cpp",
+        "<virtual_root>/driver/CS5522.cpp",
+        "<virtual_root>/driver/CS5522-example.cpp",
+        "<virtual_root>/util/LinearExample.cpp",
+        "<virtual_root>/util/LinearPiecewise.cpp",
+        "<virtual_root>/util/LinearPiecewiseExample.cpp",
+        "<virtual_root>/menu",
+        "<virtual_root>/menu1",
+        "<virtual_root>/::CMSIS"
+      ],
+      "toolchain": "AC5",
+      "compileConfig": {
+        "cpuType": "Cortex-M0",
+        "floatingPointHardware": "none",
+        "scatterFilePath": "",
+        "useCustomScatterFile": false,
+        "storageLayout": {
+          "RAM": [
+            {
+              "tag": "RAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x20000000",
+                "size": "0x2000"
+              },
+              "isChecked": true,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            }
+          ],
+          "ROM": [
+            {
+              "tag": "ROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "IROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x8000000",
+                "size": "0x10000"
+              },
+              "isChecked": true,
+              "isStartup": true
+            },
+            {
+              "tag": "IROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            }
+          ]
+        },
+        "options": "null"
+      },
+      "uploader": "OpenOCD",
+      "uploadConfig": {
+        "bin": "",
+        "target": "stm32f1x",
+        "interface": "cmsis-dap",
+        "baseAddr": "0x08000000"
+      },
+      "uploadConfigMap": {
+        "JLink": {
+          "bin": "",
+          "baseAddr": "",
+          "cpuInfo": {
+            "vendor": "null",
+            "cpuName": "null"
+          },
+          "proType": 1,
+          "speed": 8000,
+          "otherCmds": ""
+        },
+        "OpenOCD": {
+          "bin": "",
+          "target": "stm32f1x",
+          "interface": "stlink",
+          "baseAddr": "0x08000000"
+        },
+        "pyOCD": {
+          "bin": "",
+          "targetName": "cortex_m",
+          "baseAddr": "0x08000000",
+          "speed": "4M",
+          "config": ".eide/target 1.pyocd.yaml"
+        }
+      },
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          "../../FrameWork/stm32f0/ST/CMSIS/Core/Include",
+          "../../FrameWork/stm32f0/ST/CMSIS/Device/ST/STM32F0xx/Include",
+          "../../FrameWork/stm32f0/ST/STM32F0xx_HAL_Driver/Inc",
+          "../../User",
+          "../../User/stm32f030f4",
+          "../../FrameWork/common",
+          "../../FrameWork/stm32f0/eBox",
+          "../../FrameWork/stm32f0/eBox/mcu",
+          "../../../my-lib/drive/ebox",
+          "../../../my-lib/drive/utility/LCDMenuLib2-2.2.7/src",
+          ".cmsis/include",
+          "RTE/_Target 1",
+          ".eide/deps"
+        ],
+        "libList": [],
+        "sourceDirList": [],
+        "defineList": [
+          "USE_FULL_LL_DRIVER",
+          "STM32F030x6"
+        ]
+      }
+    }
+  },
+  "version": "3.3"
+}
