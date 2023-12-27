@@ -31,7 +31,7 @@
 #define DEMO_VER			"1.0"
 
 
-E_ADC adc1(&PA0);
+E_ADC adc1(&PA1);
 E_ADC intRef(E_ADC::ch_intervRef);
 E_ADC tem(E_ADC::ch_temperature);
 //#if defined(ADC_CCR_VBATEN)

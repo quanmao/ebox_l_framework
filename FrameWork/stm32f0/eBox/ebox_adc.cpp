@@ -35,7 +35,7 @@ void E_ADC::_init()
   if (LL_ADC_IsEnabled(ADC1) == 0)
   {
     /* Set ADC clock (conversion clock) */
-    LL_ADC_SetClock(ADC1, LL_ADC_CLOCK_SYNC_PCLK_DIV2);
+    LL_ADC_SetClock(ADC1, LL_ADC_CLOCK_SYNC_PCLK_DIV4);
     
     /* Set ADC data resolution */
     LL_ADC_SetResolution(ADC1, LL_ADC_RESOLUTION_12B);
@@ -153,9 +153,7 @@ float calcTemperature(uint16_t v, uint16_t ref)
 
 /**
  *@brief    构造函数
- *@param    E_PinID id, Pin id
- *		   uint16_t refVoltage 参考电压，默认3300
- *@retval   如果引脚正确则返回该引脚的模拟电压值所对应的模拟电压，默认参考电压为3.3V
+ *@param    E_GPIO *io
 */
 E_ADC::E_ADC(E_GPIO *io)
 {

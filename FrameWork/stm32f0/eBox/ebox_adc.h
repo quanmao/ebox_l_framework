@@ -44,13 +44,16 @@ public:
 #if defined(ADC_CCR_VBATEN)
 		ch_battery,
 #endif
+#if defined(USE_INTERVREF)
 		ch_intervRef
+#endif
 	} ADC_CH;
 public:
 	E_ADC(E_GPIO *io);
 	E_ADC(ADC_CH ch);
 
 	uint16_t read();
+
 
 private:
 	uint32_t _channel; // adcÍ¨µÀ
@@ -59,7 +62,9 @@ private:
 };
 
 extern uint16_t calcVoltage(uint16_t v, uint16_t ref = REFVOLTAGE);
+#if defined(USE_INTERVREF)
 extern uint16_t calcInterCalRef(uint16_t v);
+#endif
 extern float calcTemperature(uint16_t v, uint16_t ref = REFVOLTAGE);
 
 //class E_AdcDMA{

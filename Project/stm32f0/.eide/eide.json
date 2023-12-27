@@ -385,7 +385,6 @@
         "<virtual_root>/example/uart.cpp",
         "<virtual_root>/example/exit.cpp",
         "<virtual_root>/example/gpios.cpp",
-        "<virtual_root>/example/adc.cpp",
         "<virtual_root>/example/flash.cpp",
         "<virtual_root>/example/timer1.cpp",
         "<virtual_root>/example/pwm.cpp",
@@ -414,7 +413,8 @@
         "<virtual_root>/util/LinearPiecewiseExample.cpp",
         "<virtual_root>/menu",
         "<virtual_root>/menu1",
-        "<virtual_root>/::CMSIS"
+        "<virtual_root>/::CMSIS",
+        "<virtual_root>/example/wdg.cpp"
       ],
       "toolchain": "AC5",
       "compileConfig": {
@@ -533,7 +533,7 @@
       "uploader": "OpenOCD",
       "uploadConfig": {
         "bin": "",
-        "target": "stm32f1x",
+        "target": "stm32f0x",
         "interface": "cmsis-dap",
         "baseAddr": "0x08000000"
       },
