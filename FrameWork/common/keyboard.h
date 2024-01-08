@@ -9,17 +9,16 @@
 
 //软件滤波时间ms
 #define CONTINUE_COUNTS 200 //连击间隔
-#define FILTER_COUNTS   0   //默认不使用软件滤波
-//长按事件触发事件
-#define LONG_PRESS_COUNTS 		1000 //2000ms
+#define FILTER_COUNTS   100   //默认不使用软件滤波
+#define LONG_PRESS_COUNTS   2000 ////长按事件触发时间
 
 // 空键值
-#define KEY_NULL    		0
+#define KEY_NULL    		0x1E
 
 //定义按键返回值状态(按下,长按,连发,释放)
-#define KEY_DOWN        0x400
-#define KEY_LONG        0x200
-#define KEY_CONTINUE    0x100
+#define KEY_DOWN        0x8400
+#define KEY_LONG        0x8200
+#define KEY_CONTINUE    0x8100
 
 
 class keyBoard
@@ -30,7 +29,6 @@ public:
     void loop();    // 按键处理程序，滤波，单击，长按，连击
     uint16_t getKeyVolue(); // 返回处理好的键值
 private:
-    uint8_t   _keybuf;   
-		uint16_t  _keyValue;
+		uint16_t  _keyValue; // 最终键值
 };
 #endif
