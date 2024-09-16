@@ -40,10 +40,12 @@ extern E_GPIO PA10;
 extern E_GPIO PA13;
 extern E_GPIO PA14;
 
+extern E_GPIO PB0;
 extern E_GPIO PB1;
 extern E_GPIO PB3;
 extern E_GPIO PB4;
 extern E_GPIO PB5;
+extern E_GPIO PB9;
 
 extern E_GPIO PF0;
 extern E_GPIO PF1;
@@ -53,7 +55,8 @@ extern E_UART uart1;
 extern E_EXTI BTN;
 #endif
 
-#define LED PA5
+//#define LED PA5
+#define LED PB0
 #define LED1 PA5
 #define LED2 PA5
 #define UART uart1
