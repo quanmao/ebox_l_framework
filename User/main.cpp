@@ -11,7 +11,7 @@ Copyright 2015 shentq. All Rights Reserved.
 
 
 #include "ebox.h"
-#include "bsp_ebox.h"
+//#include "bsp_ebox.h"
 
 extern void setup();
 extern void test();
