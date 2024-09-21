@@ -5,8 +5,14 @@ Objects
 .clang-format
 .cmsis
 RTE
+*.Administrator
 
 Project/stm32f0/EIDE/conf.cppcheck
 Project/stm32f0/DebugConfig/Target_1_STM32F030C8Tx.dbgconf
 Project/stm32f0/EIDE/.gitignore
 Project/stm32f0/stm32f0x.uvguix.Administrator
+Project/stm32f0/stm32f0x.uvoptx
+Project/stm32f0/stm32f0x.uvprojx
+Project/at32f421/at32f421.uvoptx
+Project/at32f421/at32f421.uvprojx
+Project/at32f421/at32f421.uvguix.Administrator

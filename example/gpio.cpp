@@ -28,6 +28,6 @@ void setup(){
 void test(){
     while(1){
 			PA5.toggle();
-			delayMs(1000);
+			delayMs(1);
     }
 }

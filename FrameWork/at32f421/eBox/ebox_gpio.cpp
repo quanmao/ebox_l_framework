@@ -115,6 +115,7 @@ uint8_t E_GPIO::read(void)
 void E_GPIO::toggle()
 {
     _port->odt ^= _pin;
+//	(_port->idt & _pin) == _pin ?(_port->clr = _pin):(_port->scr = _pin);
 }
 
 //// œ‡µ±”Îread()

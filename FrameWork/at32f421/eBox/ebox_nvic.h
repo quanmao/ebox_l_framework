@@ -4,7 +4,7 @@
   * @author  cat_li
   * @version V1.0
   * @date    2020/1/15
-  * @brief   æ­¤æ–‡ä»¶é—®nvicç›¸å…³é…ç½®,æ­¤éƒ¨åˆ†ä¸€èˆ¬æ— éœ€è°ƒç”¨ï¼Œåœ¨å¤–è®¾æ–‡ä»¶ä¸­å·²ç»è°ƒç”¨å¤„ç†
+  * @brief   ´ËÎÄ¼şÎÊnvicÏà¹ØÅäÖÃ,´Ë²¿·ÖÒ»°ãÎŞĞèµ÷ÓÃ£¬ÔÚÍâÉèÎÄ¼şÖĞÒÑ¾­µ÷ÓÃ´¦Àí
   ******************************************************************************
   * @attention
   ******************************************************************************
@@ -19,24 +19,24 @@
 extern "C" {
 #endif
 
-#define eboxNvicPriorityEncode NVIC_EncodePriority // å‚æ•°åˆ†åˆ«ä¸ºriorityGroup,PreemptPriority,SubPriorityã€‚è¿”å›å€¼å¯åšä¸ºeboxNvicIrqSetPriorityçš„å‚æ•°
-#define eboxNvicPriorityDecode NVIC_DecodePriority // å‚æ•°åˆ†åˆ«ä¸ºPriority,PriorityGroup,uint32_t* const pPreemptPriority, uint32_t* const pSubPriority \
-                                                   // å‰ä¸¤ä¸ªè¾“å…¥ï¼Œåä¸¤ä¸ªè¿”å›
-                                                   // è®¾ç½®è·å–ä¸­æ–­ä¼˜å…ˆçº§
-#define eboxNvicIrqSetPriority __NVIC_SetPriority  // å‚æ•°åˆ†åˆ«ä¸ºIRQn,priority(è¯¥å‚æ•°å¯é€šè¿‡eboxNvicPriorityEncodeè·å–)
-#define eboxNvicIrqGetPriority __NVIC_GetPriority  // å‚æ•°ä¸ºIRQnï¼Œè¿”å›priority
+#define eboxNvicPriorityEncode NVIC_EncodePriority // ²ÎÊı·Ö±ğÎªriorityGroup,PreemptPriority,SubPriority¡£·µ»ØÖµ¿É×öÎªeboxNvicIrqSetPriorityµÄ²ÎÊı
+#define eboxNvicPriorityDecode NVIC_DecodePriority // ²ÎÊı·Ö±ğÎªPriority,PriorityGroup,uint32_t* const pPreemptPriority, uint32_t* const pSubPriority \
+                                                   // Ç°Á½¸öÊäÈë£¬ºóÁ½¸ö·µ»Ø
+                                                   // ÉèÖÃ»ñÈ¡ÖĞ¶ÏÓÅÏÈ¼¶
+#define eboxNvicIrqSetPriority __NVIC_SetPriority  // ²ÎÊı·Ö±ğÎªIRQn,priority(¸Ã²ÎÊı¿ÉÍ¨¹ıeboxNvicPriorityEncode»ñÈ¡)
+#define eboxNvicIrqGetPriority __NVIC_GetPriority  // ²ÎÊıÎªIRQn£¬·µ»Øpriority
 
 
-// æ ¹æ®å¤–è®¾ä¸­æ–­å·ï¼Œå¼€å¯å…³é—­ä¸­æ–­
-#define eboxNvicIrqDisable __NVIC_DisableIRQ // å‚æ•°IRQn_Type irq_numï¼Œä¸­æ–­å·
-#define eboxNvicIrqEnable __NVIC_EnableIRQ   // å‚æ•°IRQn_Type irq_numï¼Œä¸­æ–­å·
+// ¸ù¾İÍâÉèÖĞ¶ÏºÅ£¬¿ªÆô¹Ø±ÕÖĞ¶Ï
+#define eboxNvicIrqDisable __NVIC_DisableIRQ // ²ÎÊıIRQn_Type irq_num£¬ÖĞ¶ÏºÅ
+#define eboxNvicIrqEnable __NVIC_EnableIRQ   // ²ÎÊıIRQn_Type irq_num£¬ÖĞ¶ÏºÅ
 
 /**
- *@brief    æ ¹æ®è®¾å¤‡åœ°å€å’Œå…¶å¯¹åº”çš„ç¬¬å‡ ä¸ªä¸­æ–­ç´¢å¼•ï¼Œä»ä¸­æ–­è¡¨ä¸­æŸ¥æ‰¾ä¸­æ–­å·
- *@param    *tableï¼šä¸­æ–­è¡¨
-            dev  :  è®¾å¤‡åœ°å€ï¼Œå¦‚(uint32_t)TIM1,(uint32_t)USART1,(uint32_t)SPI1ç­‰ç­‰
-            index:  è®¾å¤‡çš„ç¬¬å‡ ä¸ªä¸­æ–­å…¥å£ã€‚æœ€å¤§æ”¯æŒ4ä¸ªï¼Œå³0-3ï¼Œä¸€èˆ¬è®¾å¤‡åªæœ‰ä¸€ä¸ªï¼Œå³å¯å¡«0
- *@retval   ä¸­æ–­å·
+ *@brief    ¸ù¾İÉè±¸µØÖ·ºÍÆä¶ÔÓ¦µÄµÚ¼¸¸öÖĞ¶ÏË÷Òı£¬´ÓÖĞ¶Ï±íÖĞ²éÕÒÖĞ¶ÏºÅ
+ *@param    *table£ºÖĞ¶Ï±í
+            dev  :  Éè±¸µØÖ·£¬Èç(uint32_t)TIM1,(uint32_t)USART1,(uint32_t)SPI1µÈµÈ
+            index:  Éè±¸µÄµÚ¼¸¸öÖĞ¶ÏÈë¿Ú¡£×î´óÖ§³Ö4¸ö£¬¼´0-3£¬Ò»°ãÉè±¸Ö»ÓĞÒ»¸ö£¬¼´¿ÉÌî0
+ *@retval   ÖĞ¶ÏºÅ
 */
 __STATIC_INLINE IRQn_Type eboxDevToIrq(const DevToIRQn_t *table, uint32_t dev, uint8_t index)
 {

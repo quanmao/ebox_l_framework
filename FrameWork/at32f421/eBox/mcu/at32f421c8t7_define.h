@@ -19,7 +19,7 @@
 //// #include "stm32f0xx_ll_cortex.h"
 //// #include "stm32f0xx_ll_pwr.h"
 #include "mcu_define.h"
-//#include "ebox_config.h"
+#include "ebox_config.h"
 
 //外设->时钟源查询表,相关信息可在at32f421_crm.h中查找
 static const DevToRcc_t RccTableGPIO[] = {
@@ -92,23 +92,14 @@ static const DevToRcc_t RccTableUSART[] = {
 ////    {DMA1_BASE, LL_AHB1_GRP1_PERIPH_DMA1},
 ////};
 
-//static const DevToIRQn_t IrqTableUSART[] = {
-//#if (USE_UART1 && defined USART1_BASE)
-//    {USART1_BASE, USART1_IRQn},
-//#endif
-//#if (USE_UART2 && defined USART2_BASE)
-//    {USART2_BASE, USART2_IRQn},
-//#endif
-//#if (USE_UART3 && defined USART3_BASE)
-//    {USART3_BASE, USART3_IRQn},
-//#endif
-//#if (USE_UART4 && defined USART4_BASE)
-//    {USART4_BASE, USART4_IRQn},
-//#endif
-//#if (USE_UART5 && defined USART5_BASE)
-//    {USART5_BASE, USART5_IRQn},
-//#endif
-//    0};
+static const DevToIRQn_t IrqTableUSART[] = {
+#if (USE_UART1 && defined USART1_BASE)
+   {USART1_BASE, USART1_IRQn},
+#endif
+#if (USE_UART2 && defined USART2_BASE)
+   {USART2_BASE, USART2_IRQn},
+#endif
+   0};
 
 //static const DevToIRQn_t IrqTableTIM[] = {
 //    {TIM1_BASE, TIM1_BRK_UP_TRG_COM_IRQn, TIM1_CC_IRQn},

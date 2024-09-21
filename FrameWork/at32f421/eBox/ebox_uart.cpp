@@ -1,15 +1,15 @@
 /**
-  ******************************************************************************
-  * @file    ebox_uart.cpp
-  * @author  cat_li
-  * @version V1.0
-  * @date    2020/1/15
-  * @brief   此文件问串口相关，提供串口初始化，write，read，支持中断。
-  *      20240917-移植到at32f421系列
-  ******************************************************************************
-  * @attention
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    ebox_uart.cpp
+ * @author  cat_li
+ * @version V1.0
+ * @date    2020/1/15
+ * @brief   此文件问串口相关，提供串口初始化，write，read，支持中断。
+ *      20240917-移植到at32f421系列
+ ******************************************************************************
+ * @attention
+ ******************************************************************************
+ */
 /* Includes ------------------------------------------------------------------*/
 #include "ebox_base.h"
 #include "ebox_gpio.h"
@@ -60,13 +60,13 @@ extern "C"
  *          tx_pin:  外设所对应的tx引脚
  *          rx_pin:  外设所对应的rx引脚
  *@retval   None
-*/
+ */
 E_UART::E_UART(usart_type *USARTx, E_GPIO *tx_pin, E_GPIO *rx_pin)
 {
     _USARTx = USARTx;
     _txPin = tx_pin;
     _rxPin = rx_pin;
-    _tOut = 300;    // 默认超时时间300ms
+    _tOut = 300; // 默认超时时间300ms
 }
 
 /**
@@ -76,26 +76,26 @@ E_UART::E_UART(usart_type *USARTx, E_GPIO *tx_pin, E_GPIO *rx_pin)
  *          parity:     检验位；0：无校验位，1奇校验，2偶校验
  *          stop_bit:   停止位；1,2 两个可选参数
  *@retval   None
-*/
+ */
 void E_UART::begin(uint32_t baud_rate, Parity_t parity, Stop_t stop_bit)
 {
     uint8_t index;
     eboxRccCmd(RccTableUSART, (uint32_t)_USARTx, ENABLE);
     // 初始化IO
-//    index = getIndex(_rxPin->id, UART_MAP);
-//    _rxPin->mode(UART_MAP[index]._pinMode, UART_MAP[index]._pinAf);
+    index = getIndex(_rxPin->id, UART_MAP);
+    _rxPin->mode(UART_MAP[index]._pinMode, UART_MAP[index]._pinAf);
     index = getIndex(_txPin->id, UART_MAP);
     _txPin->mode(UART_MAP[index]._pinMode, UART_MAP[index]._pinAf);
 
-  usart_init(_USARTx, baud_rate, USART_DATA_8BITS, USART_STOP_1_BIT);
-	usart_parity_selection_config(_USARTx,(usart_parity_selection_type)parity);
-  usart_transmitter_enable(_USARTx, TRUE);
-  usart_enable(_USARTx, TRUE);
-
+    usart_init(_USARTx, baud_rate, USART_DATA_8BITS, USART_STOP_1_BIT);
+    usart_parity_selection_config(_USARTx, (usart_parity_selection_type)parity);
+    usart_transmitter_enable(_USARTx, TRUE);
+		usart_receiver_enable(_USARTx,TRUE);
+    usart_enable(_USARTx, TRUE);
 
 #if (USE_RX_IRQ | USE_TX_IRQ)
     eboxNvicIrqEnable(eboxDevToIrq(IrqTableUSART, (uint32_t)_USARTx, 0));
-
+//		eboxNvicIrqEnable(USART1_IRQn);
     switch ((uint32_t)_USARTx)
     {
 #if (USE_UART1 && defined USART1_BASE)
@@ -123,8 +123,8 @@ void E_UART::begin(uint32_t baud_rate, Parity_t parity, Stop_t stop_bit)
         index = uart5;
         break;
 #endif
-		default:
-			break;
+    default:
+        break;
     }
     uartIrqHandleAdd(index, E_UART::_irqHandle, (uint32_t)this);
 #endif
@@ -134,10 +134,9 @@ void E_UART::begin(uint32_t baud_rate, Parity_t parity, Stop_t stop_bit)
  *@brief    读取RDR中的数据并返回,不判断,不清除
  *@param    NONE
  *@retval   当前RDR数据
-*/
+ */
 uint8_t E_UART::readInRx()
 {
- //   return (uint8_t)(READ_BIT(_USARTx->RDR, USART_RDR_RDR) & 0xFFU);
     return (uint8_t)(_USARTx->dt);
 }
 
@@ -145,18 +144,18 @@ uint8_t E_UART::readInRx()
  *@brief    读取一个字节，并清除当前数据
  *@param    NONE
  *@retval   -1  无数据，其他，当前数据
-*/
+ */
 uint8_t E_UART::read()
 {
     uint8_t ret = 0;
     uint32_t endtime = ENDTIME(_tOut);
     while (!TIMEOUT(endtime, _tOut))
     {
-//        if (LL_USART_IsActiveFlag_RXNE(_USARTx))
-//        {
-//            ret = (uint8_t)(READ_BIT(_USARTx->RDR, USART_RDR_RDR) & 0xFFU);
-//            LL_USART_RequestRxDataFlush(_USARTx);
-//        }        
+        if ((_USARTx->sts & USART_RDBF_FLAG) != 0)
+        {
+            ret = (uint8_t)(_USARTx->dt);
+            //                   LL_USART_RequestRxDataFlush(_USARTx);
+        }
     }
     return ret;
 }
@@ -165,13 +164,13 @@ uint8_t E_UART::read()
  *@brief    发送一个字节
  *@param    c：要发送的字符
  *@retval   1
-*/
+ */
 size_t E_UART::write(char val)
 {
-        while ((_USARTx->sts & USART_TDBE_FLAG) ==0)
-        {
-        }; // 等待发送寄存器为空
-        _USARTx->dt  = val;
+    while ((_USARTx->sts & USART_TDBE_FLAG) == 0)
+    {
+    }; // 等待发送寄存器为空
+    _USARTx->dt = val;
     return 1;
 }
 
@@ -180,10 +179,10 @@ size_t E_UART::write(char *val, size_t len)
     uint16_t i = 0;
     for (; i < len; i++)
     {
-        while ((_USARTx->sts & USART_TDBE_FLAG) ==0)
+        while ((_USARTx->sts & USART_TDBE_FLAG) == 0)
         {
         }; // 等待发送寄存器为空
-        _USARTx->dt  = *val++;
+        _USARTx->dt = *val++;
     }
     return i;
 }
@@ -194,18 +193,19 @@ size_t E_UART::write(char *val, size_t len)
 void E_UART::interruptEnable(IrqType type)
 {
 #if (USE_RX_IRQ)
-    (type == C_UartRxIrq) ? LL_USART_EnableIT_RXNE(_USARTx) : (LL_USART_EnableIT_TC(_USARTx));
+		//usart_interrupt_enable(USART1, USART_RDBF_INT, TRUE);
+    (type == C_UartRxIrq) ? (PERIPH_REG((uint32_t)_USARTx, USART_RDBF_INT) |= PERIPH_REG_BIT(USART_RDBF_INT)) : (PERIPH_REG((uint32_t)_USARTx, USART_TDBE_INT) |= PERIPH_REG_BIT(USART_TDBE_INT));
 #else
-    (LL_USART_EnableIT_TC(_USARTx));
+    (PERIPH_REG((uint32_t)_USARTx, USART_TDBE_INT) |= PERIPH_REG_BIT(USART_TDBE_INT));
 #endif
 }
 // 关中断
 void E_UART::interruptDisable(IrqType type)
 {
 #if (USE_RX_IRQ)
-    (type == C_UartRxIrq) ? LL_USART_DisableIT_RXNE(_USARTx) : (LL_USART_DisableIT_TC(_USARTx));
+    (type == C_UartRxIrq) ? (PERIPH_REG((uint32_t)_USARTx, USART_RDBF_INT) &= ~PERIPH_REG_BIT(USART_RDBF_INT)) : (PERIPH_REG((uint32_t)_USARTx, USART_TDBE_INT) &= ~PERIPH_REG_BIT(USART_TDBE_INT));
 #else
-    (LL_USART_DisableIT_TC(_USARTx));
+    (PERIPH_REG((uint32_t)_USARTx, USART_TDBE_INT) &= ~PERIPH_REG_BIT(USART_TDBE_INT));
 #endif
 }
 // 绑定静态回调函数
@@ -236,17 +236,18 @@ extern "C"
     void USART1_IRQHandler(void)
     {
 #if USE_RX_IRQ
-        if (LL_USART_IsActiveFlag_RXNE(USART1) && LL_USART_IsEnabledIT_RXNE(USART1))
+        
+        if( USART1->sts_bit.rdbf & USART1->ctrl1_bit.rdbfien )	// 接收中断开且接收缓冲区非空
         {
             pIrqHandler(irqIds[uart1], C_UartRxIrq);
-            LL_USART_RequestRxDataFlush(USART1);
+            USART1->sts = ~USART_RDBF_FLAG; // 清除标志位,否则会一直产生中断.
         }
 #endif
 #if USE_TX_IRQ
-        if (LL_USART_IsActiveFlag_TC(USART1) && LL_USART_IsEnabledIT_TC(USART1))
+        if (USART1->sts_bit1.tdc & USART1->ctrl1_bit.tdcien )   // 发送完成中断开且已发送完成
         {
             pIrqHandler(irqIds[uart1], C_UartTxIrq);
-            LL_USART_ClearFlag_TC(USART1);
+            USART1->sts = ~USART_TDC_FLAG; // 清除标志位,否则会一直产生中断.
         }
 #endif
     }
@@ -256,77 +257,18 @@ extern "C"
     void USART2_IRQHandler(void)
     {
 #if USE_RX_IRQ
-        if (LL_USART_IsActiveFlag_RXNE(USART2) && LL_USART_IsEnabledIT_RXNE(USART2))
+        
+        if( USART2->sts_bit.rdbf & USART2->ctrl1_bit.rdbfien )	// 接收中断开且接收缓冲区非空
         {
             pIrqHandler(irqIds[uart2], C_UartRxIrq);
-            LL_USART_RequestRxDataFlush(USART2);
+            USART2->sts = ~USART_RDBF_FLAG; // 清除标志位,否则会一直产生中断.
         }
 #endif
 #if USE_TX_IRQ
-        if (LL_USART_IsActiveFlag_TC(USART2) && LL_USART_IsEnabledIT_TC(USART2))
+        if (USART2->sts_bit1.tdc & USART2->ctrl1_bit.tdcien )   // 发送完成中断开且已发送完成
         {
             pIrqHandler(irqIds[uart2], C_UartTxIrq);
-            LL_USART_ClearFlag_TC(USART2);
-        }
-#endif
-    }
-#endif
-
-#if (USE_UART3 && defined USART3_BASE)
-    void USART3_IRQHandler(void)
-    {
-#if USE_RX_IRQ
-        if (LL_USART_IsActiveFlag_RXNE(USART3) && LL_USART_IsEnabledIT_RXNE(USART3))
-        {
-            pIrqHandler(irqIds[uart3], C_UartRxIrq);
-            LL_USART_RequestRxDataFlush(USART3);
-        }
-#endif
-#if USE_TX_IRQ
-        if (LL_USART_IsActiveFlag_TC(USART3) && LL_USART_IsEnabledIT_TC(USART3))
-        {
-            pIrqHandler(irqIds[uart3], C_UartTxIrq);
-            LL_USART_ClearFlag_TC(USART3);
-        }
-#endif
-    }
-#endif
-
-#if (USE_UART4 && defined USART4_BASE)
-    void USART4_IRQHandler(void)
-    {
-#if USE_RX_IRQ
-        if (LL_USART_IsActiveFlag_RXNE(USART4) && LL_USART_IsEnabledIT_RXNE(USART4))
-        {
-            pIrqHandler(irqIds[uart4], C_UartRxIrq);
-            LL_USART_RequestRxDataFlush(USART4);
-        }
-#endif
-#if USE_TX_IRQ
-        if (LL_USART_IsActiveFlag_TC(USART4) && LL_USART_IsEnabledIT_TC(USART4))
-        {
-            pIrqHandler(irqIds[uart4], C_UartTxIrq);
-            LL_USART_ClearFlag_TC(USART4);
-        }
-#endif
-    }
-#endif
-
-#if (USE_UART5 && defined USART5_BASE)
-    void USART2_IRQHandler(void)
-    {
-#if USE_RX_IRQ
-        if (LL_USART_IsActiveFlag_RXNE(USART5) && LL_USART_IsEnabledIT_RXNE(USART5))
-        {
-            pIrqHandler(irqIds[uart5], C_UartRxIrq);
-            LL_USART_RequestRxDataFlush(USART5);
-        }
-#endif
-#if USE_TX_IRQ
-        if (LL_USART_IsActiveFlag_TC(USART5) && LL_USART_IsEnabledIT_TC(USART5))
-        {
-            pIrqHandler(irqIds[uart5], C_UartTxIrq);
-            LL_USART_ClearFlag_TC(USART5);
+            USART2->sts = ~USART_TDC_FLAG; // 清除标志位,否则会一直产生中断.
         }
 #endif
     }

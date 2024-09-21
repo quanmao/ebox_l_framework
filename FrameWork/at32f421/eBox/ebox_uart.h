@@ -23,7 +23,7 @@
 
 // 配置是是否使用RX,TX中断，1 使用，0 不使用
 #if USE_UART_IRQ
-#define USE_RX_IRQ 0
+#define USE_RX_IRQ 1
 #define USE_TX_IRQ 0
 #endif
 
@@ -52,7 +52,6 @@ typedef enum
     C_UartStop2 = USART_STOP_2_BIT
 } Stop_t;
 
-//class E_UART : public ebox_print
 class E_UART : public Print
 {
 public:
